@@ -1,0 +1,2 @@
+include ':httpres-retrofit',
+        ':httpres-retrofit-gson'
