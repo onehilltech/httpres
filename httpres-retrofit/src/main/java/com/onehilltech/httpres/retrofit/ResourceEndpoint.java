@@ -35,11 +35,19 @@ public class ResourceEndpoint <T>
      * Query a list of resources.
      *
      * @param name
-     * @param options
      * @return
      */
     @GET("{name}")
-    Call<Resource> get (@Path("name") String name, @QueryMap Map<String, String> options);
+    Call<Resource> get (@Path("name") String name);
+
+    /**
+     * Query a list of resources.
+     *
+     * @param name
+     * @param options
+     * @return
+     */
+    Call<Resource> get (@Path("name") String name, @QueryMap Map<String, Object> options);
 
     /**
      * Query a single resources.
@@ -145,7 +153,23 @@ public class ResourceEndpoint <T>
     return this.methods_.get (this.path_, id);
   }
 
-  public Call<Resource> get (Map <String, String> params)
+  /**
+   * Get all the resources
+   *
+   * @return
+   */
+  public Call<Resource> get ()
+  {
+    return this.methods_.get (this.path_);
+  }
+
+  /**
+   * Get all the resources that match the specified query string.
+   *
+   * @param params
+   * @return
+   */
+  public Call<Resource> get (Map <String, Object> params)
   {
     return this.methods_.get (this.path_, params);
   }
@@ -157,7 +181,7 @@ public class ResourceEndpoint <T>
    * @param value
    * @return
    */
-  public Call<Resource> update (String id, Object value)
+  public Call<Resource> update (String id, T value)
   {
     return this.methods_.update (this.path_, id, new Resource (this.name_, value));
   }
