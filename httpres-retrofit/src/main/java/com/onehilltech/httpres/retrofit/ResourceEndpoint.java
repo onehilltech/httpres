@@ -47,6 +47,7 @@ public class ResourceEndpoint <T>
      * @param options
      * @return
      */
+    @GET("{name}")
     Call<Resource> get (@Path("name") String name, @QueryMap Map<String, Object> options);
 
     /**
