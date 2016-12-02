@@ -79,7 +79,7 @@ public class ResourceEndpoint <T>
      * @return
      */
     @GET("{name}/count")
-    Call <Resource> count ();
+    Call <Resource> count (@Path("name") String name);
 
     /**
      * Get the number of resources that match the specified query.
@@ -88,7 +88,7 @@ public class ResourceEndpoint <T>
      * @return
      */
     @GET("{name}/count")
-    Call <Resource> count (@QueryMap Map <String, Object> query);
+    Call <Resource> count (@Path("name") String name, @QueryMap Map <String, Object> query);
   }
 
   /// Name of the resource
@@ -215,7 +215,7 @@ public class ResourceEndpoint <T>
    */
   public Call<Resource> count ()
   {
-    return this.methods_.count ();
+    return this.methods_.count (this.path_);
   }
 
   /**
@@ -226,6 +226,6 @@ public class ResourceEndpoint <T>
    */
   public Call<Resource> count (Map <String, Object> query)
   {
-    return this.methods_.count (query);
+    return this.methods_.count (this.path_, query);
   }
 }
