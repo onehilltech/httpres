@@ -19,7 +19,7 @@ import retrofit2.http.QueryMap;
  */
 public class ResourceEndpoint <T>
 {
-  public interface Methods
+  interface Methods
   {
     /**
      * Create a new resource.
@@ -70,15 +70,24 @@ public class ResourceEndpoint <T>
     @PUT("{name}/{id}")
     Call<Resource> update (@Path("name") String name, @Path("id") String id, @Body Resource rc);
 
-    /**
-     * Delete a resource.
-     *
-     * @param name
-     * @param id
-     * @return
-     */
     @DELETE("{name}/{id}")
     Call<Boolean> delete (@Path("name") String name, @Path("id") String id);
+
+    /**
+     * Retrieve the number of resources from the server.
+     *
+     * @return
+     */
+    @GET("{name}/count")
+    Call <Resource> count ();
+
+    /**
+     * Get the number of resources that match the specified query.
+     *
+     * @param query
+     * @return
+     */
+    Call <Resource> count (@QueryMap Map <String, Object> query);
   }
 
   /// Name of the resource
@@ -196,5 +205,26 @@ public class ResourceEndpoint <T>
   public Call<Boolean> delete (String id)
   {
     return this.methods_.delete (this.path_, id);
+  }
+
+  /**
+   * Retrieve the number of resources.
+   *
+   * @return
+   */
+  public Call<Resource> count ()
+  {
+    return this.methods_.count ();
+  }
+
+  /**
+   * Retrieve the number of resources that match the specified criteria.
+   *
+   * @param query
+   * @return
+   */
+  public Call<Resource> count (Map <String, Object> query)
+  {
+    return this.methods_.count (query);
   }
 }
