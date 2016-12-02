@@ -87,6 +87,7 @@ public class ResourceEndpoint <T>
      * @param query
      * @return
      */
+    @GET("{name}/count")
     Call <Resource> count (@QueryMap Map <String, Object> query);
   }
 
