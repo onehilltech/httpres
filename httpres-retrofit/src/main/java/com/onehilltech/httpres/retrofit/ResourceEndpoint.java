@@ -48,7 +48,7 @@ public class ResourceEndpoint <T>
      * @return
      */
     @GET("{name}")
-    Call<Resource> get (@Path("name") String name, @QueryMap Map<String, Object> options);
+    Call<Resource> get (@Path("name") String name, @QueryMap(encoded = true) Map<String, Object> options);
 
     /**
      * Query a single resources.
@@ -88,7 +88,7 @@ public class ResourceEndpoint <T>
      * @return
      */
     @GET("{name}/count")
-    Call <Resource> count (@Path("name") String name, @QueryMap Map <String, Object> query);
+    Call <Resource> count (@Path("name") String name, @QueryMap(encoded = true) Map <String, Object> query);
   }
 
   /// Name of the resource
